@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
 
             // 로그인 상태 띄워주기 //
             if(status.equals("1")) {    // 로그인이 성공했다면
-                //Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_LONG).show();
 
                 if(type.equals("0")) {  // 로그인이 성공했는데 교사라면
                     Intent intent = new Intent(getApplicationContext(), teacherHomeActivity.class);    // 교사용 activity로 넘김
