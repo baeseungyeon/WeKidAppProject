@@ -132,14 +132,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pwdTxt" />
 
-    <Button
-        android:id="@+id/chatTestBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="채팅테스트용"
-        tools:layout_editor_absoluteX="109dp"
-        tools:layout_editor_absoluteY="16dp" />
-
     <!--
     <RadioGroup android:layout_width="fill_parent"
         android:layout_height="wrap_content"

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,6 +26,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private Button joinBtn;
     private EditText inputId;
     private EditText inputPwd;
-    private Button chatTestBtn; //<---------- 채팅 테스트용
 
     RadioGroup userTypeGroup;
     RadioButton teacherBtn;
@@ -39,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
     String checkUserType;
 
     ////////////////////// 서버에서 받아올 정보들 담는 변수 ///////////////////
-    String status = null;   // 로그인 실패 = 0, 로그인 성공 = 1
-    String id = null;
-    String name = null;      // 이름
-    String phoneNum = null;
-    String kinder = null;    // 유치원 명, 교사만 받아옴
-    String myClass = null;   // 변수명 'class'로 못만들게돼있어서 myClass로 만듦, 교사만 받아옴
+    String status;        // 로그인 실패 = 0, 로그인 성공 = 1
+    String id;
+    String name ;         // 이름
+    String phoneNum;
+    String kinderName;    // 유치원 이름, 교사만 받아옴
+    String className;     // 반 이름, 교사만 받아옴
     //////////////////////////////////////////////////////////////////////
 
     @Override
@@ -60,19 +63,6 @@ public class MainActivity extends AppCompatActivity {
         userTypeGroup = (RadioGroup)findViewById(R.id.userTypeGroup);
         teacherBtn = (RadioButton) findViewById(R.id.teacherBtn);
         parentsBtn = (RadioButton) findViewById(R.id.parentsBtn);
-
-        //////////테스트용 나중에 삭제해야함//////////////
-        chatTestBtn = (Button) findViewById(R.id.chatTestBtn);  // <-------------채팅 테스트용
-
-        chatTestBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), StartActivity.class);
-                startActivity(intent);
-            } // <---------채팅 테스트용
-
-        });
-        ///////////////////////////////////////////////
 
         // 로그인 버튼 클릭 이벤트 ----------------
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -198,8 +188,8 @@ public class MainActivity extends AppCompatActivity {
                     phoneNum = jsonObject.get("phoneNum").toString();
 
                     if(teacherBtn.isChecked() == true) {    // 교사인 경우
-                        kinder = jsonObject.get("kinder").toString();
-                        myClass = jsonObject.get("class").toString();
+                        kinderName = jsonObject.get("kinderName").toString();
+                        className = jsonObject.get("className").toString();
                     }
                 }
             } catch (JSONException e) {
@@ -215,13 +205,13 @@ public class MainActivity extends AppCompatActivity {
                     // teacherActivity로 넘김
                     Intent intent = new Intent(getApplicationContext(), TeacherHomeActivity.class);
 
+                    Log.i("data : ", id + " " + name + " " + kinderName + " " + className + " " + phoneNum);
                     // 데이터도 같이 전달
-                    intent.putExtra("name", name);
-                    intent.putExtra("kinder", kinder);
-                    intent.putExtra("myClass", myClass);
-                    intent.putExtra("phoneNum", phoneNum);
-
                     intent.putExtra("id", id);
+                    intent.putExtra("name", name);
+                    intent.putExtra("kinderName", kinderName);
+                    intent.putExtra("className", className);
+                    intent.putExtra("phoneNum", phoneNum);
 
                     startActivity(intent);
                 }
