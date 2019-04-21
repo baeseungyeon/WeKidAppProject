@@ -71,7 +71,7 @@ public class ParentsHomeActivity extends AppCompatActivity {
         kidsArray = new ArrayList<KidsDTO>();
         kidsNameArray = new ArrayList<String>();
 
-        new ParentsHomeActivity.JSONTask().execute("http://10.0.2.2:3000/getKidsList"); //AsyncTask 시작시킴
+        new ParentsHomeActivity.JSONTask().execute("http://10.0.2.2:3000/getKidsListFromParents"); //AsyncTask 시작시킴
 
         // 메신저 버튼 클릭 이벤트
         messengerBtn.setOnClickListener(new View.OnClickListener() {
