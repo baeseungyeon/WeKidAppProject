@@ -12,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BusActivity"></activity>
-        <activity android:name=".parentsHomeActivity" />
-        <activity android:name=".teacherHomeActivity" />
+        <activity android:name=".StartActivity"></activity>
+        <activity android:name=".ChatDTO" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".BusActivity" />
+        <activity android:name=".ParentsHomeActivity" />
+        <activity android:name=".TeacherHomeActivity" />
         <activity android:name=".JoinActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

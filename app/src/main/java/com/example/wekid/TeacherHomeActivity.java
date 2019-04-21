@@ -23,15 +23,17 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class teacherHomeActivity extends AppCompatActivity {
+public class TeacherHomeActivity extends AppCompatActivity {
     TextView kinderName;
     TextView className;
     TextView teacherName;
 
+    String id = null;
     String name = null;
     String kinder = null;       // 유치원 명
     String myClass = null;   // 변수명 'class'로 못 만들게 돼있어서 myClass로 만듦
     String phoneNum = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class teacherHomeActivity extends AppCompatActivity {
         // MainActivity에서 보낸 데이터 받아옴 ---
         Intent intent = getIntent();
 
+        id = intent.getExtras().getString("id");
         name = intent.getExtras().getString("name");
         kinder = intent.getExtras().getString("kinder");
         myClass = intent.getExtras().getString("myClass");
