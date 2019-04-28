@@ -18,15 +18,16 @@ public class JoinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_join);
 
         // 스피너 초기화 ------------------------------
-        Spinner spinner = (Spinner) findViewById(R.id.userTypeSpinner);
+        Spinner userTypeSpinner = (Spinner) findViewById(R.id.userTypeSpinner);
 
         //어댑터 정의 <String 배열> - api에 미리 정의되어있는 adapter
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, userTypeArr);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        userTypeSpinner.setAdapter(adapter);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        // 스피너 클릭 이벤트
+        userTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 userType = userTypeArr[position].toString();

@@ -1,7 +1,11 @@
 package com.example.wekid;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 // 아이 정보 담는 클래스
-public class KidsDTO {
+// 객체 자체를 전달하기 위해 implements Parcelable
+public class KidsDTO implements Parcelable {
     private String identifier;
     private String name;
     private String birth;
@@ -10,6 +14,48 @@ public class KidsDTO {
     private String className;
     private String teacherId;
     private String parentsId;
+
+    public KidsDTO() {}
+
+    protected KidsDTO(Parcel in) {
+        identifier = in.readString();
+        name = in.readString();
+        birth = in.readString();
+        address = in.readString();
+        kinderName = in.readString();
+        className = in.readString();
+        teacherId = in.readString();
+        parentsId = in.readString();
+    }
+
+    public static final Creator<KidsDTO> CREATOR = new Creator<KidsDTO>() {
+        @Override
+        public KidsDTO createFromParcel(Parcel in) {
+            return new KidsDTO(in);
+        }
+
+        @Override
+        public KidsDTO[] newArray(int size) {
+            return new KidsDTO[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(identifier);
+        dest.writeString(name);
+        dest.writeString(birth);
+        dest.writeString(address);
+        dest.writeString(kinderName);
+        dest.writeString(className);
+        dest.writeString(teacherId);
+        dest.writeString(parentsId);
+    }
 
     public String getIdentifier() {
         return identifier;

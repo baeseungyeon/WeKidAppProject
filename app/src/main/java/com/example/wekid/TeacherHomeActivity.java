@@ -22,9 +22,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeacherHomeActivity extends AppCompatActivity {
     TextView kinderName;
@@ -33,18 +36,21 @@ public class TeacherHomeActivity extends AppCompatActivity {
     Button messengerBtn;
 
     TeacherDTO teacherDTO;   // 담임 객체
+    String status;           // 서버에서 담당 원아 명수 받아와서 저장. 없으면 0
+    List<KidsDTO> kidsArray; // 담당 원아 정보 담을 리스트
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_home);
 
-        teacherDTO = new TeacherDTO();  // 담임 객체
+        teacherDTO = new TeacherDTO();  // 담임 객체 초기화
+        kidsArray = new ArrayList<KidsDTO>(); // 담당 원아 정보 담을 리스트 초기화
 
-        kinderName = (TextView) findViewById(R.id.kinderName);
-        className = (TextView) findViewById(R.id.className);
-        teacherName = (TextView) findViewById(R.id.teacherName);
-        messengerBtn = (Button) findViewById(R.id.messengerBtn);
+        kinderName = (TextView) findViewById(R.id.kinderName);      // 유치원 이름 띄워주는 텍스트뷰
+        className = (TextView) findViewById(R.id.className);        // 반 이름 띄워주는 텍스트뷰
+        teacherName = (TextView) findViewById(R.id.teacherName);    // 선생님 이름 띄워주는 텍스트뷰
+        messengerBtn = (Button) findViewById(R.id.messengerBtn);    // 메신저 들어가는 버튼
 
         // MainActivity에서 보낸 데이터 받아옴 ---
         Intent intent = getIntent();
@@ -66,30 +72,14 @@ public class TeacherHomeActivity extends AppCompatActivity {
         messengerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String chat_name = "";
-                String user_name = "";
-
-                //String kids_name = "송민국";
-
-                chat_name = teacherDTO.getId() + "|0";  // 채팅방 이름은 교사아이디|아이식별자
-                user_name = "담임 선생님";
-
-                /*for(int i = 0; i < kidsArray.size(); i++) {
-                    if(kidsArray.get(i).getName().equals(kids_name)) {  // kidsArray에 있는 애 이름이랑 스피너에서 선택한 애 이름이랑 같으면
-                        String teacher_id = kidsArray.get(i).getTeacherId();
-                        String kids_identifier = kidsArray.get(i).getIdentifier();
-
-                        chat_name = teacher_id + "|" + kids_identifier;  // 채팅방 이름은 교사아이디|아이식별자
-                        user_name = kids_name + " 학부모님";
-                    }
-                }*/
-
-                Intent intent = new Intent(TeacherHomeActivity.this, ChatActivity.class);
-                intent.putExtra("chatName", chat_name);
-                intent.putExtra("userName", user_name);
+                // 채팅 목록을 띄워주기 위해 ChatList 클래스로 넘어감
+                Intent intent = new Intent(TeacherHomeActivity.this, ChatListActivity.class);
+                intent.putExtra("teacherDTO", teacherDTO);                  // ChatList로 교사 객체 전달
+                intent.putExtra("kidsArray", (Serializable) kidsArray);     // ChatList로 원아 객체 전달
                 startActivity(intent);
             }
         });
+        // 메신저 버튼 클릭 이벤트 끝
     }
 
     public class JSONTask extends AsyncTask<String, String, String> {
@@ -168,6 +158,36 @@ public class TeacherHomeActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
+            // 서버에서 받아온 json 가공 --------------
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                status = jsonObject.get("status").toString();
+
+                // 담당 원아가 없는 경우
+                if(status.equals("0")) {
+                    Toast.makeText(getApplicationContext(), "없음", Toast.LENGTH_LONG).show();
+                }
+                // 담당 원아가 1명 이상 있는 경우
+                else {
+                    JSONArray jsonArray = (JSONArray)jsonObject.get("rows");
+                    for(int i = 0; i < Integer.parseInt(status); i++) {
+                        JSONObject returnObject = (JSONObject) jsonArray.get(i);
+                        KidsDTO kidsDTO = new KidsDTO();
+                        kidsDTO.setIdentifier(returnObject.get("identifier").toString());
+                        kidsDTO.setName(returnObject.get("name").toString());
+                        kidsDTO.setBirth(returnObject.get("birth").toString());
+                        kidsDTO.setAddress(returnObject.get("address").toString());
+                        kidsDTO.setKinderName(returnObject.get("kinderName").toString());
+                        kidsDTO.setClassName(returnObject.get("className").toString());
+                        kidsDTO.setTeacherId(returnObject.get("teacherId").toString());
+                        kidsDTO.setParentsId(returnObject.get("parentsId").toString());
+                        kidsArray.add(kidsDTO);
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            // 여기까지 ------------------------------
         }
     }
 }

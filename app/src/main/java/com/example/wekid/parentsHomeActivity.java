@@ -44,7 +44,7 @@ public class ParentsHomeActivity extends AppCompatActivity {
     String kidsId = null;
 
     //
-    String status;
+    String status;           // 서버에서 자식 명수 받아와서 저장. 없으면 0
     List<KidsDTO> kidsArray; // 자기 자식 정보 담을 리스트
     ArrayAdapter<String> adapter;
     List<String> kidsNameArray;  // 자기 자식 이름만 담을 리스트
@@ -55,10 +55,10 @@ public class ParentsHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parents_home);
 
-        kinderName = (TextView) findViewById(R.id.kinderName);
-        className = (TextView) findViewById(R.id.className);
-        kidsNameList = (Spinner) findViewById(R.id.kidsNameList);
-        messengerBtn = (Button) findViewById(R.id.messengerBtn);
+        kinderName = (TextView) findViewById(R.id.kinderName);      // 유치원 이름 띄워주는 텍스트 뷰
+        className = (TextView) findViewById(R.id.className);        // 반 이름 띄워주는 텍스트 뷰
+        kidsNameList = (Spinner) findViewById(R.id.kidsNameList);   // 원아 목록 띄워주는 스피너(콤보박스)
+        messengerBtn = (Button) findViewById(R.id.messengerBtn);    // 메신저 들어가는 버튼
 
         // MainActivity에서 보낸 데이터 받아옴 ---
         Intent intent = getIntent();
@@ -92,7 +92,7 @@ public class ParentsHomeActivity extends AppCompatActivity {
                     }
                 }
 
-                Intent intent = new Intent(ParentsHomeActivity.this, ChatActivity.class);
+                Intent intent = new Intent(ParentsHomeActivity.this, ChatRoomActivity.class);
                 intent.putExtra("chatName", chat_name);
                 intent.putExtra("userName", user_name);
                 startActivity(intent);
@@ -188,7 +188,7 @@ public class ParentsHomeActivity extends AppCompatActivity {
                 if(status.equals("0")) {
                     Toast.makeText(getApplicationContext(), "없음", Toast.LENGTH_LONG).show();
                 }
-                // 자식이 있는 경우
+                // 자식이 1명 이상 있는 경우
                 else {
                     JSONArray jsonArray = (JSONArray)jsonObject.get("rows");
                     for(int i = 0; i < Integer.parseInt(status); i++) {

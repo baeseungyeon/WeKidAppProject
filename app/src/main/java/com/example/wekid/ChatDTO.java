@@ -9,6 +9,7 @@ public class ChatDTO {
     private String message;
 
     public ChatDTO() {}
+
     public ChatDTO(String userName, String message) {
         this.userName = userName;
         this.message = message;

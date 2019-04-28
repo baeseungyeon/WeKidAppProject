@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatRoomActivity extends AppCompatActivity {
 
     private String CHAT_NAME;
     private String USER_NAME;
@@ -31,7 +31,7 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_chat_room);
 
         // 위젯 ID 참조
         chat_view = (ListView) findViewById(R.id.chat_view);

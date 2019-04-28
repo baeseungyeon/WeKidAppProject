@@ -29,6 +29,33 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+<java 파일 설명>
+BusActivity : 버스 버튼을 누르면 나타나는 액티비티
+ChatDTO : 채팅 관련 정보를 담고있는 클래스 (학생관리 프로그램으로치면 Student 클래스같은거임)
+ChatListActivity : 채팅방 목록(담당 원아 목록)띄워주는 액티비티 (교사가 메신저 버튼 클릭하면 나타나는 화면)
+ChatRoomActivity : 채팅방 액티비티
+JoinActivity : 회원가입 버튼을 누르면 나타나는 액티비티
+KidsDTO : 원아 관련 정보를 담고있는 클래스
+KidsItem : ChatListActivity에서 원아목록을 리스트뷰로 띄워주기 위해 사용
+MainActivity : 어플 실행하면 처음에 나타나는 액티비티
+ParentsHomeActivity : 학부모로 로그인하면 나타나는 액티비티
+TeacherDTO : 교사 관련 정보를 담고 있는 클래스
+TeacherHomeActivity : 교사로 로그인하면 나타나는 액티비티
+
+<xml 파일 설명>
+activity_bus.xml : 버스액티비티 화면
+activity_chat_list.xml : 챗리스트 화면
+activity_chat_room.xml : 챗룸액티비티 화면
+activity_join.xml : 조인액티비티 화면
+activity_main.xml : 메인액티비티 화면
+activity_parents_home.xml : 패런츠액티비티 화면
+activity_teacher_home.xml : 티쳐액티비티 화면
+chat_list_custom.xml : 챗리스트 리스트뷰에 들어갈 view를 꾸며놓은 레이아웃
+
+☆ StartActivity.java와 activity_start.xml은 채팅 테스트하기위해 만들어놨던 것으로 사용하지 않고 개발 끝나면 삭제할것임!
+*/
+
 public class MainActivity extends AppCompatActivity {
 
     private Button loginBtn;
