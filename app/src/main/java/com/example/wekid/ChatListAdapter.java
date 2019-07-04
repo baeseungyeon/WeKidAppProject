@@ -57,16 +57,16 @@ public class ChatListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    // 아이템 데이터 추가를 위한 함수.
+    // 아이템 데이터 추가를 위한 함수
     public void addItem(Drawable icon, String name, String contents) {
         KidsItem newItem = new KidsItem();
 
-        // KidsItem에 아이템을 setting한다.
+        // KidsItem에 아이템을 setting
         newItem.setIcon(icon);
         newItem.setName(name);
         newItem.setContents(contents);
 
-        // items에 새로운 KidsItem을 추가한다.
+        // items에 새로운 KidsItem을 추가
         items.add(newItem);
     }
 }

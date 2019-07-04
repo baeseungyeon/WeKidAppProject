@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
@@ -48,6 +49,8 @@ public class ChatListActivity extends AppCompatActivity {
                 Intent intent = new Intent(ChatListActivity.this, ChatRoomActivity.class);
                 intent.putExtra("chatName", chat_name);
                 intent.putExtra("userName", user_name);
+                intent.putExtra("userId", teacherDTO.getId());
+                //intent.putExtra("teacherStatus", teacherDTO.getWorkStatus());
                 startActivity(intent);
             }
         });
@@ -58,7 +61,7 @@ public class ChatListActivity extends AppCompatActivity {
         ChatListAdapter adapter = new ChatListAdapter();
 
         for(int i = 0; i < kidsArray.size(); i++) {
-            adapter.addItem(ContextCompat.getDrawable(getApplicationContext(), R.drawable.profile2), kidsArray.get(i).getName() + " 학부모", "contents_" + i);
+            adapter.addItem(ContextCompat.getDrawable(getApplicationContext(), R.drawable.profile), kidsArray.get(i).getName() + " 학부모", "마지막 메시지");
         }
 
         // 리스트뷰에 어댑터 등록

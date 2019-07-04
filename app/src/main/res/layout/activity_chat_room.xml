@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.wekid.ChatRoomActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/notice_txt"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/browser_actions_bg_grey"
+            android:background="@drawable/ban1"/>
 
         <LinearLayout
             android:layout_weight="1"
@@ -20,24 +25,37 @@
             <ListView
                 android:id="@+id/chat_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:divider="#ffffff"
+                android:dividerHeight="0px"
+                android:listSelector="@android:color/transparent"
+                android:overScrollMode="never"
+                android:scrollbars="none" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/chat_sent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="send" />
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/chat_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_width="295dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/file_send"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/clip" />
+
+            <Button
+                android:id="@+id/chat_send"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/send1" />
         </LinearLayout>
 
     </LinearLayout>

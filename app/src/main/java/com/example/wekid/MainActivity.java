@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -30,10 +32,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
+☆ StartActivity.java와 activity_start.xml은 채팅 테스트하기위해 만들어놨던 것으로 사용하지 않고 개발 끝나면 삭제할것임!
+
 <java 파일 설명>
 BusActivity : 버스 버튼을 누르면 나타나는 액티비티
+ChatAdapter : 채팅 어댑터
 ChatDTO : 채팅 관련 정보를 담고있는 클래스 (학생관리 프로그램으로치면 Student 클래스같은거임)
 ChatListActivity : 채팅방 목록(담당 원아 목록)띄워주는 액티비티 (교사가 메신저 버튼 클릭하면 나타나는 화면)
+ChatListAdapter : 채팅방 목록 어댑터
 ChatRoomActivity : 채팅방 액티비티
 JoinActivity : 회원가입 버튼을 누르면 나타나는 액티비티
 KidsDTO : 원아 관련 정보를 담고있는 클래스
@@ -52,14 +58,12 @@ activity_main.xml : 메인액티비티 화면
 activity_parents_home.xml : 패런츠액티비티 화면
 activity_teacher_home.xml : 티쳐액티비티 화면
 chat_list_custom.xml : 챗리스트 리스트뷰에 들어갈 view를 꾸며놓은 레이아웃
-
-☆ StartActivity.java와 activity_start.xml은 채팅 테스트하기위해 만들어놨던 것으로 사용하지 않고 개발 끝나면 삭제할것임!
 */
 
 public class MainActivity extends AppCompatActivity {
 
     private Button loginBtn;
-    private Button joinBtn;
+    //private Button joinBtn;
     private EditText inputId;
     private EditText inputPwd;
 
@@ -75,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
     String phoneNum;
     String kinderName;    // 유치원 이름, 교사만 받아옴
     String className;     // 반 이름, 교사만 받아옴
+    String workStatus;    // 출퇴근 상태
+    String offWorkTime;   // 퇴근 시간
     //////////////////////////////////////////////////////////////////////
 
     @Override
@@ -85,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         loginBtn = (Button) findViewById(R.id.loginBtn);
         inputId = (EditText) findViewById(R.id.inputId);
         inputPwd = (EditText) findViewById(R.id.inputPwd);
-        joinBtn = (Button) findViewById(R.id.joinBtn);
+        //joinBtn = (Button) findViewById(R.id.joinBtn);
 
         userTypeGroup = (RadioGroup)findViewById(R.id.userTypeGroup);
         teacherBtn = (RadioButton) findViewById(R.id.teacherBtn);
@@ -108,18 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "회원구분을 선택하세요.", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-        // 여기까지 ------------------------------
-
-        // 회원가입 버튼 클릭 이벤트 ---------------
-        joinBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // 회원가입 activity로 넘어가기 위한 코드
-                Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
-                startActivity(intent);
             }
         });
         // 여기까지 ------------------------------
@@ -217,6 +211,8 @@ public class MainActivity extends AppCompatActivity {
                     if(teacherBtn.isChecked() == true) {    // 교사인 경우
                         kinderName = jsonObject.get("kinderName").toString();
                         className = jsonObject.get("className").toString();
+                        workStatus = jsonObject.get("workStatus").toString();
+                        offWorkTime = jsonObject.get("offWorkTime").toString();
                     }
                 }
             } catch (JSONException e) {
@@ -232,13 +228,14 @@ public class MainActivity extends AppCompatActivity {
                     // teacherActivity로 넘김
                     Intent intent = new Intent(getApplicationContext(), TeacherHomeActivity.class);
 
-                    Log.i("data : ", id + " " + name + " " + kinderName + " " + className + " " + phoneNum);
                     // 데이터도 같이 전달
                     intent.putExtra("id", id);
                     intent.putExtra("name", name);
                     intent.putExtra("kinderName", kinderName);
                     intent.putExtra("className", className);
                     intent.putExtra("phoneNum", phoneNum);
+                    intent.putExtra("workStatus", workStatus);
+                    intent.putExtra("offWorkTime", offWorkTime);
 
                     startActivity(intent);
                 }

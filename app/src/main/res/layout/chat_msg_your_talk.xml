@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="right"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/your_profile_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingLeft="5px"
+        android:paddingRight="15px"
+        android:paddingBottom="5px">
+
+        <ImageView
+            android:id="@+id/your_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/profile" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/your_talk_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        android:paddingLeft="15px"
+        android:paddingRight="15px"
+        android:paddingBottom="5px">
+
+        <TextView
+            android:id="@+id/your_talk"
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_system"
+            android:paddingTop="30px" />
+
+        <ImageView
+            android:id="@+id/your_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/your_talk_time"
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:text="19-05-26 PM 12:14" />
+    </LinearLayout>
+</LinearLayout>

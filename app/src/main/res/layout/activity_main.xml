@@ -4,110 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFEEA8"
+    android:background="@drawable/back1"
     tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/inputId"
-        android:layout_width="wrap_content"
+        android:layout_width="246dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginTop="252dp"
+        android:layout_weight="1"
+        android:background="@drawable/loginbox"
         android:ems="10"
+        android:font="@font/hoon"
         android:hint="아이디를 입력하세요"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/inputPwd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoTxt" />
+        app:layout_constraintEnd_toEndOf="@+id/inputPwd"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/inputPwd"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/inputPwd"
-        android:layout_width="wrap_content"
+        android:layout_width="246dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="93dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/loginbox"
         android:ems="10"
+        android:font="@font/hoon"
         android:hint="비밀번호를 입력하세요"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pwdTxt"
-        app:layout_constraintTop_toBottomOf="@+id/logoTxt" />
-
-    <TextView
-        android:id="@+id/idTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
-        android:text="아이디"
-        app:layout_constraintEnd_toStartOf="@+id/inputId"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoTxt" />
-
-    <TextView
-        android:id="@+id/pwdTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
-        android:text="비밀번호"
-        app:layout_constraintEnd_toStartOf="@+id/inputId"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/inputId" />
 
     <Button
         android:id="@+id/loginBtn"
-        android:layout_width="133dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginBottom="140dp"
-        android:background="#FFFFFF"
-        android:text="로그인"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/joinBtn"
-        android:layout_width="133dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginLeft="38dp"
+        android:layout_width="246dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="42dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="140dp"
-        android:background="#FFFFFF"
-        android:text="회원가입"
+        android:layout_marginBottom="144dp"
+        android:background="@drawable/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/loginBtn" />
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userTypeGroup" />
+
+    <!--
+    <Button
+        android:id="@+id/joinBtn"
+        android:layout_width="246dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="148dp"
+        android:background="@drawable/sign"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn"
+        app:layout_constraintVertical_bias="1.0" />
+        -->
 
     <RadioGroup
         android:id="@+id/userTypeGroup"
         android:layout_width="196dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="60dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="69dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/joinBtn"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPwd">
 
@@ -116,37 +92,19 @@
             android:layout_width="92dp"
             android:layout_height="43dp"
             android:text="교사"
+            android:font="@font/hoon"
             tools:layout_editor_absoluteX="50dp"
             tools:layout_editor_absoluteY="349dp" />
 
         <RadioButton
             android:id="@+id/parentsBtn"
             android:layout_width="104dp"
-            android:layout_height="match_parent"
+            android:layout_height="47dp"
             android:text="학부모"
+            android:font="@font/hoon"
             tools:layout_editor_absoluteX="151dp"
             tools:layout_editor_absoluteY="349dp" />
     </RadioGroup>
-
-    <TextView
-        android:id="@+id/logoTxt"
-        android:layout_width="271dp"
-        android:layout_height="108dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="WeKid"
-        android:textColor="#000000"
-        android:textSize="90dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.572"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
     <!--
     <RadioGroup android:layout_width="fill_parent"

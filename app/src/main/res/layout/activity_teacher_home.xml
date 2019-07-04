@@ -4,89 +4,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/thomeback"
     tools:context=".TeacherHomeActivity">
 
     <TextView
         android:id="@+id/kinderName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
-        android:text='"      "'
-        app:layout_constraintBaseline_toBaselineOf="@+id/kinderTxt"
-        app:layout_constraintEnd_toStartOf="@+id/kinderTxt" />
-
-    <TextView
-        android:id="@+id/kinderTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="135dp"
-        android:layout_marginLeft="135dp"
-        android:text="유치원"
-        app:layout_constraintBottom_toBottomOf="@+id/className"
+        android:layout_width="69dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="256dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text='"       "'
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/className" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.075" />
 
     <TextView
         android:id="@+id/teacherName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
+        android:layout_width="77dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="236dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text='"      "'
-        app:layout_constraintBaseline_toBaselineOf="@+id/parentsTxt"
-        app:layout_constraintEnd_toStartOf="@+id/parentsTxt" />
-
-    <TextView
-        android:id="@+id/parentsTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:text="선생님"
-        app:layout_constraintStart_toStartOf="@+id/kinderTxt"
-        app:layout_constraintTop_toBottomOf="@+id/kinderTxt" />
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/className"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
-        android:text='"      "'
-        app:layout_constraintBaseline_toBaselineOf="@+id/classTxt"
-        app:layout_constraintStart_toEndOf="@+id/kinderTxt" />
+        android:layout_width="83dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text='"     "'
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.118" />
 
-    <TextView
-        android:id="@+id/classTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="111dp"
-        android:text="반"
-        app:layout_constraintStart_toEndOf="@+id/className"
+    <Button
+        android:id="@+id/messengerBtn"
+        android:layout_width="130dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="235dp"
+        android:layout_marginTop="410dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="174dp"
+        android:background="@drawable/m_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/busBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
-        android:layout_marginBottom="65dp"
-        android:text="버스"
-        app:layout_constraintBottom_toTopOf="@+id/messengerBtn"
-        app:layout_constraintEnd_toStartOf="@+id/classTxt"
-        app:layout_constraintTop_toBottomOf="@+id/parentsTxt"
-        app:layout_constraintVertical_bias="0.733" />
+        android:layout_width="130dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="410dp"
+        android:layout_marginEnd="223dp"
+        android:layout_marginBottom="174dp"
+        android:background="@drawable/b_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
-        android:id="@+id/messengerBtn"
+        android:id="@+id/workStatusBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
-        android:text="메신저"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="퇴근"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/busBtn" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.259" />
+
+    <TextView
+        android:id="@+id/nowWorkStatusTxt"
+        android:layout_width="62dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="출근"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.288" />
+
 </android.support.constraint.ConstraintLayout>

@@ -42,18 +42,25 @@ public class ParentsHomeActivity extends AppCompatActivity {
     String phoneNum = null;
 
     String kidsId = null;
+    String selected_teacher_id;
+    String selected_teacher_status;
+    String selected_teacher_off_work_time;
 
     //
     String status;           // 서버에서 자식 명수 받아와서 저장. 없으면 0
     List<KidsDTO> kidsArray; // 자기 자식 정보 담을 리스트
     ArrayAdapter<String> adapter;
     List<String> kidsNameArray;  // 자기 자식 이름만 담을 리스트
+    String teacher_id;
     //
+
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parents_home);
+        context = this;
 
         kinderName = (TextView) findViewById(R.id.kinderName);      // 유치원 이름 띄워주는 텍스트 뷰
         className = (TextView) findViewById(R.id.className);        // 반 이름 띄워주는 텍스트 뷰
@@ -81,26 +88,50 @@ public class ParentsHomeActivity extends AppCompatActivity {
                 String user_name = "";
 
                 String kids_name = kidsNameList.getSelectedItem().toString();
+                teacher_id = kidsArray.get(0).getTeacherId();
+                selected_teacher_id = teacher_id;
+                String kids_identifier = kidsArray.get(0).getIdentifier();
 
                 for(int i = 0; i < kidsArray.size(); i++) {
                     if(kidsArray.get(i).getName().equals(kids_name)) {  // kidsArray에 있는 애 이름이랑 스피너에서 선택한 애 이름이랑 같으면
-                        String teacher_id = kidsArray.get(i).getTeacherId();
-                        String kids_identifier = kidsArray.get(i).getIdentifier();
+                        teacher_id = kidsArray.get(i).getTeacherId();
+                        selected_teacher_id = teacher_id;
+                        kids_identifier = kidsArray.get(i).getIdentifier();
 
                         chat_name = teacher_id + "|" + kids_identifier;  // 채팅방 이름은 교사아이디|아이식별자
                         user_name = kids_name + " 학부모님";
                     }
                 }
 
+                //서버로 연결하여 선생님 현재 출퇴근 상태를 받아온다.
+                new ParentsHomeActivity.getTeacherWorkStatusTask().execute("http://10.0.2.2:3000/getTeacherWorkStatus");
+                //Toast.makeText(getApplicationContext(), selected_teacher_status, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ParentsHomeActivity.this, ChatRoomActivity.class);
                 intent.putExtra("chatName", chat_name);
                 intent.putExtra("userName", user_name);
+                intent.putExtra("userId", id);
+                //intent.putExtra("teacherStatus", selected_teacher_status);
                 startActivity(intent);
             }
         });
 
         // 스피너 변경 이벤트 (자식 변경 이벤트)
-        //
+        kidsNameList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                for(int i = 0; i < kidsArray.size(); i++) {
+                    if (kidsNameList.getSelectedItem().toString().equals(kidsArray.get(i).getName())) {
+                        kinderName.setText(kidsArray.get(i).getKinderName());
+                        className.setText(kidsArray.get(i).getClassName());
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public class JSONTask extends AsyncTask<String, String, String> {
@@ -220,6 +251,94 @@ public class ParentsHomeActivity extends AppCompatActivity {
             kinderName.setText(kidsArray.get(0).getKinderName());
             className.setText(kidsArray.get(0).getClassName());
             // 여기까지 ------------------------------
+        }
+    }
+
+    public class getTeacherWorkStatusTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                //JSONObject를 만들고 key value 형식으로 값을 저장해준다.
+                org.json.JSONObject jsonObject = new org.json.JSONObject();
+                jsonObject.accumulate("selected_teacher_id", selected_teacher_id);
+
+                HttpURLConnection con = null;
+                BufferedReader reader = null;
+
+                try{
+                    //URL url = new URL("http://13.125.112.4:3000/login");  // aws url
+                    URL url = new URL(urls[0]);
+                    //연결을 함
+                    con = (HttpURLConnection) url.openConnection();
+
+                    con.setRequestMethod("POST");//POST방식으로 보냄
+                    con.setRequestProperty("Cache-Control", "no-cache");//캐시 설정
+                    con.setRequestProperty("Content-Type", "application/json");//application JSON 형식으로 전송
+                    con.setRequestProperty("Accept", "text/html");//서버에 response 데이터를 html로 받음
+                    con.setDoOutput(true);//Outstream으로 post 데이터를 넘겨주겠다는 의미
+                    con.setDoInput(true);//Inputstream으로 서버로부터 응답을 받겠다는 의미
+                    con.connect();
+
+                    //서버로 보내기위해서 스트림 만듦
+                    OutputStream outStream = con.getOutputStream();
+                    //버퍼를 생성하고 넣음
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outStream));
+                    writer.write(jsonObject.toString());
+                    writer.flush();
+                    writer.close();//버퍼를 받아줌
+                    //----------------------------------- 데이터 보내기 끝 ----------------------------------------//
+
+                    //------------------------------- 서버로부터 데이터를 받음 -------------------------------------//
+                    InputStream stream = con.getInputStream();
+
+                    reader = new BufferedReader(new InputStreamReader(stream));
+
+                    StringBuffer buffer = new StringBuffer();
+
+                    String line = "";
+                    while((line = reader.readLine()) != null){
+                        buffer.append(line);
+                    }
+
+                    return buffer.toString();//서버로 부터 받은 값을 리턴해줌
+
+                } catch (MalformedURLException e){
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if(con != null){
+                        con.disconnect();
+                    }
+                    try {
+                        if(reader != null){
+                            reader.close();//버퍼를 닫아줌
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            // 서버에서 받아온 json 가공 --------------
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                Log.d("json", jsonObject.toString());
+                selected_teacher_status = jsonObject.get("selected_teacher_status").toString();
+                selected_teacher_off_work_time = jsonObject.get("selected_teacher_off_work_time").toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

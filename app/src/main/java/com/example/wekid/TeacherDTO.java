@@ -10,6 +10,8 @@ public class TeacherDTO implements Parcelable {
     private String kinderName;
     private String className;
     private String phoneNum;
+    private String workStatus;  // 출퇴근 현황.
+    private String offWorkTime;
 
     public TeacherDTO() {}
 
@@ -19,6 +21,8 @@ public class TeacherDTO implements Parcelable {
         kinderName = in.readString();
         className = in.readString();
         phoneNum = in.readString();
+        workStatus = in.readString();
+        offWorkTime = in.readString();
     }
 
     public static final Creator<TeacherDTO> CREATOR = new Creator<TeacherDTO>() {
@@ -46,6 +50,8 @@ public class TeacherDTO implements Parcelable {
         dest.writeString(kinderName);
         dest.writeString(className);
         dest.writeString(phoneNum);
+        dest.writeString(workStatus);
+        dest.writeString(offWorkTime);
     }
 
     public String getId() {
@@ -87,4 +93,16 @@ public class TeacherDTO implements Parcelable {
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
+
+    public String getWorkStatus() {
+        return workStatus;
+    }
+
+    public void setWorkStatus(String workStatus) {
+        this.workStatus = workStatus;
+    }
+
+    public String getOffWorkTime() { return offWorkTime; }
+
+    public void setOffWorkTime(String offWorkTime) { this.offWorkTime=  offWorkTime; }
 }

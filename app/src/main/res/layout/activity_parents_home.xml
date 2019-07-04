@@ -4,88 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gkrqnahhome"
     tools:context=".ParentsHomeActivity">
 
     <TextView
         android:id="@+id/kinderName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
+        android:layout_width="52dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text='"      "'
-        app:layout_constraintBaseline_toBaselineOf="@+id/kinderTxt"
-        app:layout_constraintEnd_toStartOf="@+id/kinderTxt" />
-
-    <TextView
-        android:id="@+id/kinderTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginRight="88dp"
-        android:text="유치원"
-        app:layout_constraintEnd_toStartOf="@+id/className"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/parentsTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="학부모님"
-        app:layout_constraintEnd_toStartOf="@+id/className"
-        app:layout_constraintTop_toBottomOf="@+id/kinderTxt" />
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.098" />
 
     <TextView
         android:id="@+id/className"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
-        android:layout_marginBottom="27dp"
+        android:layout_width="81dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="259dp"
+        android:layout_marginTop="118dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="588dp"
         android:text='"      "'
-        app:layout_constraintBottom_toTopOf="@+id/parentsTxt"
-        app:layout_constraintEnd_toStartOf="@+id/classTxt" />
-
-    <TextView
-        android:id="@+id/classTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="89dp"
-        android:layout_marginRight="89dp"
-        android:text="반"
-        app:layout_constraintBaseline_toBaselineOf="@+id/className"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/messengerBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="193dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginRight="160dp"
-        android:layout_marginBottom="8dp"
-        android:text="메신저"
+        android:layout_width="151dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="442dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="241dp"
+        android:background="@drawable/m_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/className"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.811" />
 
     <Spinner
         android:id="@+id/kidsNameList"
-        android:layout_width="107dp"
-        android:layout_height="wrap_content"
+        android:layout_width="121dp"
+        android:layout_height="36dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/messengerBtn"
-        app:layout_constraintEnd_toStartOf="@+id/parentsTxt"
-        app:layout_constraintHorizontal_bias="0.806"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kinderName"
-        app:layout_constraintVertical_bias="0.116" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.216" />
 
 </android.support.constraint.ConstraintLayout>
