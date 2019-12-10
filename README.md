@@ -1,5 +1,5 @@
 ## WeKid(위키드)
-![wekidphoto](https://user-images.githubusercontent.com/50092350/70491531-ced4cc80-1b44-11ea-8904-f17eede20b56.png)
+![wekidphoto1](https://user-images.githubusercontent.com/50092350/70494999-a6eb6600-1b50-11ea-8581-2895a5f6f461.png)
 + 개발 기간 : 2019/02/28 ~ 2019/05/28
 + 최근 이슈가 되고 있는 유치원 문제 2가지(버스 관련 안전 사고, 교사-학부모 간 사생활 침해 문제)를 해소하기 위해 만든 안드로이드 어플리케이션
 
